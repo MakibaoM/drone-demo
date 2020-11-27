@@ -1,15 +1,11 @@
+---
 kind: pipeline
 type: docker
-name: build
+name: default
+
 steps:
-  - name: build
-    image: golang:alpine
-    pull: if-not-exists # always never
+  - name: greeting
+    image: golang:1.12
     commands:
       - pwd
-      - ls
-      - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
-      - ./app
-trigger:
-  branch:
-    - master
+      - ls -al
